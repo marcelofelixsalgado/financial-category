@@ -18,7 +18,7 @@ export default class CategoryModel extends Model {
     declare name: string;
 
     @Column({ allowNull: false })
-    declare abbreviation: string;
+    declare code: string;
 
     @Column({ allowNull: false })
     declare description: string;

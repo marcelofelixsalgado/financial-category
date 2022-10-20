@@ -5,14 +5,14 @@ import CategoryInterface from "./category-interface";
 
 export default class Category extends Entity implements CategoryInterface {
     private _name: string;
-    private _abbreviation: string;
+    private _code: string;
     private _description: string;
 
-    constructor(id: string, name: string, abbreviation: string, description: string) {
+    constructor(id: string, name: string, code: string, description: string) {
         super();
         this._id = id;
         this._name = name;
-        this._abbreviation = abbreviation;
+        this._code = code;
         this._description = description;
         this.validate();
         if (this.notification.hasErrors()) {
@@ -24,8 +24,8 @@ export default class Category extends Entity implements CategoryInterface {
         return this._name;
     }
 
-    get abbreviation(): string {
-        return this._abbreviation;
+    get code(): string {
+        return this._code;
     }
 
     get description(): string {
@@ -37,8 +37,8 @@ export default class Category extends Entity implements CategoryInterface {
         this.validate();
     }
 
-    changeAbbreviation(abbreviation: string): void {
-        this._abbreviation = abbreviation;
+    changeCode(code: string): void {
+        this._code = code;
         this.validate();
     }
     

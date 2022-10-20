@@ -11,14 +11,14 @@ export default class CategoryYupValidator implements ValidatorInterface<Category
         .shape({
           id: yup.string().required("Id is required"),
           name: yup.string().required("Name is required"),
-          abbreviation: yup.string().required("Abbreviation is required"),
+          code: yup.string().required("Code is required"),
           description: yup.string().required("Description is required"),
         })
         .validateSync(
           {
             id: entity.id,
             name: entity.name,
-            abbreviation: entity.abbreviation,
+            code: entity.code,
             description: entity.description,
           },
           {

@@ -32,7 +32,7 @@ describe("Category repository test", () => {
         expect(categoryModel.toJSON()).toStrictEqual({
             id: "123",
             name: category.name,
-            abbreviation: category.abbreviation,
+            code: category.code,
             description: category.description,
         });
     });
@@ -51,7 +51,7 @@ describe("Category repository test", () => {
         expect(categoryModel.toJSON()).toStrictEqual({
             id: "123",
             name: category.name,
-            abbreviation: category.abbreviation,
+            code: category.code,
             description: category.description,
         });        
     });

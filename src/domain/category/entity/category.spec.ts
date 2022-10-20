@@ -14,10 +14,10 @@ describe("Category unit tests", () => {
         }).toThrowError("category: Name is required");
     });
 
-    it("should throw error when abbreviation is empty", () => {
+    it("should throw error when code is empty", () => {
         expect(() => {
             const category = new Category("5e8574ae-114e-4d4b-8622-9a2ff5a9d918", "Despesas Recorrentes", "", "Despesas mensais recorrentes");
-        }).toThrowError("category: Abbreviation is required");
+        }).toThrowError("category: Code is required");
     });
 
     it("should change name", () => {
@@ -26,10 +26,10 @@ describe("Category unit tests", () => {
         expect(category.name).toBe("Despesas Recorrentes");
     });
 
-    it("should change abbreviation", () => {
+    it("should change code", () => {
         const category = new Category("5e8574ae-114e-4d4b-8622-9a2ff5a9d918", "Despesas Recorrentes", "XX", "Despesas mensais recorrentes");
-        category.changeAbbreviation("DR");
-        expect(category.abbreviation).toBe("DR");
+        category.changeCode("DR");
+        expect(category.code).toBe("DR");
     });
     
     it("should change name", () => {

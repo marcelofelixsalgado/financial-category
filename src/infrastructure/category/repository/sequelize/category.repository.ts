@@ -1,5 +1,4 @@
 import Category from "../../../../domain/category/entity/category";
-import category from "../../../../domain/category/entity/category";
 import CategoryRepositoryInterface from "../../../../domain/category/repository/category-repository.interface";
 import CategoryModel from "./category.model";
 
@@ -9,7 +8,7 @@ export default class CategoryRepository implements CategoryRepositoryInterface {
         await CategoryModel.create({
             id: entity.id,
             name: entity.name,
-            abbreviation: entity.abbreviation,
+            code: entity.code,
             description: entity.description,
         });
     }
@@ -18,7 +17,7 @@ export default class CategoryRepository implements CategoryRepositoryInterface {
         await CategoryModel.update({
             id: entity.id,
             name: entity.name,
-            abbreviation: entity.abbreviation,
+            code: entity.code,
             description: entity.description,
         },
         {
@@ -41,14 +40,14 @@ export default class CategoryRepository implements CategoryRepositoryInterface {
             throw new Error("Category not found");
         }
 
-        return new Category(id, categoryModel.name, categoryModel.abbreviation, categoryModel.description);
+        return new Category(id, categoryModel.name, categoryModel.code, categoryModel.description);
     }
 
     async findAll(): Promise<Category[]> {
         const categoryModels = await CategoryModel.findAll();
 
         const categories = categoryModels.map((categoryModels) => {
-            return new Category(categoryModels.id, categoryModels.name, categoryModels.abbreviation, categoryModels.description);
+            return new Category(categoryModels.id, categoryModels.name, categoryModels.code, categoryModels.description);
         });
         
         return categories;

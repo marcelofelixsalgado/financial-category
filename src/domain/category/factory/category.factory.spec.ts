@@ -6,7 +6,7 @@ describe("Category factory unit test", () => {
         let category = CategoryFactory.create("Despesas Recorrentes", "DR", "Despesas mensais recorrentes");
         expect(category.id).toBeDefined();
         expect(category.name).toBe("Despesas Recorrentes");
-        expect(category.abbreviation).toBe("DR");
+        expect(category.code).toBe("DR");
         expect(category.description).toBe("Despesas mensais recorrentes");
     });
 });
