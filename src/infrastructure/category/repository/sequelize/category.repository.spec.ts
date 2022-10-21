@@ -24,7 +24,7 @@ describe("Category repository test", () => {
       
     it("should create a category", async () => {
         const categoryRepository = new CategoryRepository();
-        const category = new Category("123", "Despesas recorrentes", "DR", "Despesas mensais recorrentes");
+        const category = new Category("123", "Despesas recorrentes", "DR", "Despesas mensais recorrentes", new Date(), null);
         await categoryRepository.create(category);
 
         const categoryModel = await CategoryModel.findOne({ where: { id: "123" } });
@@ -34,12 +34,16 @@ describe("Category repository test", () => {
             name: category.name,
             code: category.code,
             description: category.description,
+            createdAt: category.createdAt,
+            updatedAt: category.updatedAt,
         });
     });
 
     it("should update a category", async () => {
+        let updatedAt = new Date();
+
         const categoryRepository = new CategoryRepository();
-        const category = new Category("123", "Nome incorreto", "DR", "Despesas mensais recorrentes");
+        const category = new Category("123", "Nome incorreto", "DR", "Despesas mensais recorrentes", new Date(), updatedAt);
         await categoryRepository.create(category);
 
         category.changeName("Despesas recorrentes");
@@ -53,12 +57,14 @@ describe("Category repository test", () => {
             name: category.name,
             code: category.code,
             description: category.description,
+            createdAt: category.createdAt,
+            updatedAt: category.updatedAt,
         });        
     });
 
     it("should find a category", async () => {
         const categoryRepository = new CategoryRepository();
-        const category = new Category("123", "Despesas recorrentes", "DR", "Despesas mensais recorrentes");
+        const category = new Category("123", "Despesas recorrentes", "DR", "Despesas mensais recorrentes", new Date(), null);
         await categoryRepository.create(category);
 
         const categoryResult = await categoryRepository.find(category.id);
@@ -76,10 +82,10 @@ describe("Category repository test", () => {
 
     it("should find all categories", async () => {
         const categoryRepository = new CategoryRepository();
-        const categoryDR = new Category("123", "Despesas recorrentes", "DR", "Despesas mensais recorrentes");
+        const categoryDR = new Category("123", "Despesas recorrentes", "DR", "Despesas mensais recorrentes", new Date(), null);
         await categoryRepository.create(categoryDR);
 
-        const categoryDV = new Category("456", "Despesas variáveis", "DV", "Despesas mensais variáveis");
+        const categoryDV = new Category("456", "Despesas variáveis", "DV", "Despesas mensais variáveis", new Date(), null);
         await categoryRepository.create(categoryDV);
 
         const categories = await categoryRepository.findAll();

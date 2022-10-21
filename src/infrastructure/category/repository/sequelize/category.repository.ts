@@ -10,6 +10,7 @@ export default class CategoryRepository implements CategoryRepositoryInterface {
             name: entity.name,
             code: entity.code,
             description: entity.description,
+            createdAt: entity.createdAt,
         });
     }
 
@@ -19,6 +20,8 @@ export default class CategoryRepository implements CategoryRepositoryInterface {
             name: entity.name,
             code: entity.code,
             description: entity.description,
+            createdAt: entity.createdAt,
+            updatedAt: entity.updatedAt,
         },
         {
             where: {
@@ -40,17 +43,30 @@ export default class CategoryRepository implements CategoryRepositoryInterface {
             throw new Error("Category not found");
         }
 
-        return new Category(id, categoryModel.name, categoryModel.code, categoryModel.description);
+        return new Category(id, categoryModel.name, categoryModel.code, categoryModel.description, categoryModel.createdAt, categoryModel.updatedAt);
     }
 
     async findAll(): Promise<Category[]> {
         const categoryModels = await CategoryModel.findAll();
 
         const categories = categoryModels.map((categoryModels) => {
-            return new Category(categoryModels.id, categoryModels.name, categoryModels.code, categoryModels.description);
+            return new Category(categoryModels.id, categoryModels.name, categoryModels.code, categoryModels.description, categoryModels.createdAt, categoryModels.updatedAt);
         });
         
         return categories;
     }
+
+    async delete(id: string): Promise<void> {
+        let categoryModel;
+        try {
+            categoryModel = await CategoryModel.destroy({
+                where: {
+                    id,
+                }
+            });
+        } catch(error) {
+            throw new Error("Error on delete Category");
+        }
+    }    
 
 }

@@ -22,4 +22,11 @@ export default class CategoryModel extends Model {
 
     @Column({ allowNull: false })
     declare description: string;
+
+    @Column({ allowNull: false })
+    declare createdAt: Date;    
+
+    @Column({ allowNull: true })
+    declare updatedAt: Date;    
+
 }
